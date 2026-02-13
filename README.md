@@ -82,7 +82,7 @@ The leaderboard auto-refreshes every **10 seconds** using a background scheduler
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/adarshkumar/gaming-leaderboard.git
+git clone 
 cd gaming-leaderboard
 
 # 2. Start PostgreSQL & Redis
@@ -410,3 +410,5 @@ This project is licensed under the MIT License.
 <p align="center">
   Built with ❤️ for high-performance gaming leaderboards
 </p>
+#   g a m e - l e a d e r b o a r d  
+ 
