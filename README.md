@@ -5,7 +5,6 @@
   <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black" />
   <img src="https://img.shields.io/badge/Prisma-5-2D3748?logo=prisma&logoColor=white" />
   <img src="https://img.shields.io/badge/Docker-24-2496ED?logo=docker&logoColor=white" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" />
 </p>
 
 <h1 align="center">🎮 Gaming Leaderboard System</h1>
