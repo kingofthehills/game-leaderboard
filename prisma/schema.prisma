@@ -1,0 +1,54 @@
+// ============================================
+// Prisma Schema - Gaming Leaderboard
+// ============================================
+// Optimized for 1M users, 5M game sessions
+// Proper indexing, constraints, and relations
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+  binaryTargets   = ["native"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int           @id @default(autoincrement())
+  username     String        @unique @db.VarChar(50)
+  joinDate     DateTime      @default(now()) @map("join_date")
+  gameSessions GameSession[]
+  leaderboard  Leaderboard?
+
+  @@index([username])
+  @@map("users")
+}
+
+model GameSession {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  score     Int      @default(0)
+  gameMode  String   @default("classic") @map("game_mode") @db.VarChar(30)
+  timestamp DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, score(sort: Desc)])
+  @@index([timestamp(sort: Desc)])
+  @@index([gameMode])
+  @@map("game_sessions")
+}
+
+model Leaderboard {
+  id         Int      @id @default(autoincrement())
+  userId     Int      @unique @map("user_id")
+  totalScore BigInt   @default(0) @map("total_score")
+  rank       Int      @default(0)
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([totalScore(sort: Desc)])
+  @@index([rank])
+  @@map("leaderboard")
+}
