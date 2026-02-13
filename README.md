@@ -361,9 +361,6 @@ Includes:
 
 ---
 
-# 📄 License
-
-MIT License
 
 ---
 
